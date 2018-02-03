@@ -149,8 +149,8 @@ export default class Movies extends Component {
                 // width: this.state.dataSource.data.children[0].data.preview.images[0].source.width,
                 // height: this.state.dataSource.data.children[0].data.preview.images[0].source.height,
                 flex: 1,
-                width: null,
-                height: null,
+                width: item.data.preview.images.width,
+                height: 200,
                 resizeMode: 'contain'
               }}
 
