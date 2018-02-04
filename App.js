@@ -41,8 +41,6 @@ export default class Movies extends Component {
             // <Text>{item.data.preview.images[0].source.url}</Text>
             <Image
               style={{
-                // width: this.state.dataSource.data.children[0].data.preview.images[0].source.width,
-                // height: this.state.dataSource.data.children[0].data.preview.images[0].source.height,
                 flex: 1,
                 width: item.data.preview.images.width,
                 height: 200,
