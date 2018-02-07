@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, Image, FlatList, Text, View } from 'react-native';
 
+const listOfCoolStuff = [, 0, "cool", "stuff"];
+
 export default class Movies extends Component {
   constructor(props) {
     super(props);
@@ -10,12 +12,12 @@ export default class Movies extends Component {
   }
 
   componentDidMount() {
-    return fetch('https://www.reddit.com/r/Sneakers/.json')
+    return fetch('https://www.reddit.com/r/sneakers/.json')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
           isLoading: false,
-          data: responseJson.data.children
+          data: responseJson.data.children.map(x => x.data)
         });
       })
       .catch((error) => {
@@ -26,7 +28,7 @@ export default class Movies extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={{ flex: 1, paddingTop: 20 }}>
+        <View style={{ flex: 1, paddingTop: 40 }}>
           <ActivityIndicator />
         </View>
       );
@@ -38,18 +40,15 @@ export default class Movies extends Component {
           data={this.state.data}
           keyExtractor={(x, i) => i}
           renderItem={({ item }) =>
-            // <Text>{item.data.preview.images[0].source.url}</Text>
+            // <Text>{item}</Text>
             <Image
               style={{
                 flex: 1,
-                width: item.data.preview.images.width,
                 height: 200,
                 resizeMode: 'contain'
               }}
 
-              source={{
-                uri: item.data.preview.images[0].source.url
-              }}
+              source={{ uri: item.url }}
             />
           }
         />
